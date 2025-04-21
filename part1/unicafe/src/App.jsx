@@ -9,13 +9,13 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
-  const handleGoodFeedback = () => {
+  const handleGoodFeedbacks = () => {
     setGood((prev) => prev + 1)
   }
-  const handleNeutralFeedback = () => {
+  const handleNeutralFeedbacks = () => {
     setNeutral((prev) => prev + 1)
   }
-  const handleBadFeedback = () => {
+  const handleBadFeedbacks = () => {
     setBad((prev) => prev + 1)
   }
 
@@ -25,9 +25,9 @@ const App = () => {
   return (
     <>
       <Title text={"give feedback"} />
-      <Button text={"good"} handleClick={handleGoodFeedback}/>
-      <Button text={"neutral"} handleClick={handleNeutralFeedback}/>
-      <Button text={"bad"} handleClick={handleBadFeedback}/>
+      <Button text={"good"} handleClick={handleGoodFeedbacks}/>
+      <Button text={"neutral"} handleClick={handleNeutralFeedbacks}/>
+      <Button text={"bad"} handleClick={handleBadFeedbacks}/>
       <Title text={"statistics"} />
       {allFeedbacks > 0 ? (
         <Statistics good={good} neutral={neutral} bad={bad} />
