@@ -1,7 +1,29 @@
-const Statistics = ({ text, count }) => {
+import Title from "./Title";
+
+const StatisticsTitle = ({ text, count }) => {
   return (
     <>
-      <p> {text} {count} </p>
+      <p>
+        {text} {count}
+      </p>
+    </>
+  );
+};
+
+const Statistics = ({ good, neutral, bad }) => {
+  const all = good + neutral + bad;
+  const average = (good - bad) / all;
+  const positive = (good / all) * 100 + " %";
+
+  return (
+    <>
+      <Title text={"statistics"} />
+      <StatisticsTitle text={"good"} count={good} />
+      <StatisticsTitle text={"neutral"} count={neutral} />
+      <StatisticsTitle text={"bad"} count={bad} />
+      <StatisticsTitle text={"all"} count={all} />
+      <StatisticsTitle text={"average"} count={average} />
+      <StatisticsTitle text={"positive"} count={positive} />
     </>
   );
 };

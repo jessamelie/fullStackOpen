@@ -19,9 +19,6 @@ const App = () => {
     setBad((prev) => prev + 1)
   }
 
-  const all = good + neutral + bad
-  const average = (good - bad) / all
-  const positive = (good / all) * 100 + " %"
 
   return (
     <>
@@ -29,14 +26,7 @@ const App = () => {
       <Button text={"good"} handleClick={handleGoodFeedback}/>
       <Button text={"neutral"} handleClick={handleNeutralFeedback}/>
       <Button text={"bad"} handleClick={handleBadFeedback}/>
-      <Title text={"statistics"} />
-      <Statistics text={"good"} count={good}/>
-      <Statistics text={"neutral"} count={neutral}/>
-      <Statistics text={"bad"} count={bad}/>
-      <Statistics text={"all"} count={all}/>
-      <Statistics text={"average"} count={average}/>
-      <Statistics text={"positive"} count={positive}/>
-
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </>
   )
 }
