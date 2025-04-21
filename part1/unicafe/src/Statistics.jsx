@@ -1,8 +1,8 @@
-const StatisticsTitle = ({ text, count }) => {
+const StatisticLine = ({ text, value }) => {
   return (
     <>
       <p>
-        {text} {count}
+        {text} {value}
       </p>
     </>
   );
@@ -15,12 +15,12 @@ const Statistics = ({ good, neutral, bad }) => {
 
   return (
     <>
-      <StatisticsTitle text={"good"} count={good} />
-      <StatisticsTitle text={"neutral"} count={neutral} />
-      <StatisticsTitle text={"bad"} count={bad} />
-      <StatisticsTitle text={"all"} count={all} />
-      <StatisticsTitle text={"average"} count={average} />
-      <StatisticsTitle text={"positive"} count={positive} />
+      <StatisticLine text={"good"} value={good} />
+      <StatisticLine text={"neutral"} value={neutral} />
+      <StatisticLine text={"bad"} value={bad} />
+      <StatisticLine text={"all"} value={all} />
+      <StatisticLine text={"average"} value={average} />
+      <StatisticLine text={"positive"} value={positive} />
     </>
   );
 };
