@@ -1,9 +1,7 @@
-const Statistics = ({ good, neutral, bad }) => {
+const Statistics = ({ text, count }) => {
   return (
     <>
-      <p> good {good} </p>
-      <p> neutral {neutral} </p>
-      <p> bad {bad} </p>
+      <p> {text} {count} </p>
     </>
   );
 };
