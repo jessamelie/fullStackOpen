@@ -1,5 +1,3 @@
-import Title from "./Title";
-
 const StatisticsTitle = ({ text, count }) => {
   return (
     <>
@@ -17,7 +15,6 @@ const Statistics = ({ good, neutral, bad }) => {
 
   return (
     <>
-      <Title text={"statistics"} />
       <StatisticsTitle text={"good"} count={good} />
       <StatisticsTitle text={"neutral"} count={neutral} />
       <StatisticsTitle text={"bad"} count={bad} />

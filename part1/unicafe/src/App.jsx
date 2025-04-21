@@ -19,6 +19,8 @@ const App = () => {
     setBad((prev) => prev + 1)
   }
 
+  const allFeedbacks = good + neutral + bad
+
 
   return (
     <>
@@ -26,7 +28,11 @@ const App = () => {
       <Button text={"good"} handleClick={handleGoodFeedback}/>
       <Button text={"neutral"} handleClick={handleNeutralFeedback}/>
       <Button text={"bad"} handleClick={handleBadFeedback}/>
-      <Statistics good={good} neutral={neutral} bad={bad} />
+      <Title text={"statistics"} />
+      {allFeedbacks > 0 ? (
+        <Statistics good={good} neutral={neutral} bad={bad} />
+      ):(<p>No feedback given</p>)
+      }
     </>
   )
 }
