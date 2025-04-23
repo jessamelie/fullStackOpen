@@ -18,6 +18,11 @@ const App = () => {
     setNewName("")
   }
 
+  if (persons.some(person => person.name === newName)) {
+    alert(`${newName} already exists `)
+    return
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
