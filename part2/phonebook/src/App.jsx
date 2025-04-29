@@ -8,7 +8,7 @@ const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
-  const [filter, setFilter]= useState('')
+  const [filter, setFilter] = useState('')
 
   useEffect(() => {
     axios
@@ -44,9 +44,17 @@ const App = () => {
     }
 
     const newPerson = { name: newName, number: newNumber }
-    setPersons(persons.concat(newPerson))
-    setNewName('')
-    setNewNumber('')
+    axios
+      .post('http://localhost:3001/persons', newPerson)
+      .then(response => {
+        console.log('data2:', response.data)
+        setPersons(persons.concat(response.data))
+        setNewName('')
+        setNewNumber('')
+      })
+      .catch(error => {
+        console.error('error adding person:', error)
+      })
   }
 
   const filteredPerson = persons.filter(person => person.name.toLowerCase().includes(filter.toLowerCase()))
@@ -54,16 +62,16 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter value={filter} onChange={handleFilterChange}/>
+      <Filter value={filter} onChange={handleFilterChange} />
       <h2>add a new person</h2>
       <PersonForm
-      onSubmit={addPerson}
-      newName={newName}
-      handleNameChange={handleNameChange}
-      newNumber={newNumber}
-      handleNumberChange={handleNumberChange}/>
+        onSubmit={addPerson}
+        newName={newName}
+        handleNameChange={handleNameChange}
+        newNumber={newNumber}
+        handleNumberChange={handleNumberChange} />
       <h2>Numbers</h2>
-      <Persons persons={filteredPerson}/>
+      <Persons persons={filteredPerson} />
     </div>
   )
 }
