@@ -37,36 +37,58 @@ const App = () => {
 
   const addPerson = (e) => {
     e.preventDefault()
+    const existingPerson = persons.find(person => person.name === newName)
 
-    if (persons.some(person => person.name === newName)) {
-      alert(`${newName} already exists`)
+    if (existingPerson) {
+      if (existingPerson.number !== newNumber) {
+        const confirmUpdate = window.confirm(
+          `${newName} is already added to phonebook, replace the old number with the new one?`
+        )
+
+      if (confirmUpdate) {
+        const updatedPerson = { ...existingPerson, number: newNumber }
+
+
+        personService
+          .update(existingPerson.id, updatedPerson)
+          .then(response => {
+            setPersons(persons.map(person =>
+              person.id !== existingPerson.id ? person : response.data
+            ))
+            setNewName('')
+            setNewNumber('')
+          })
+          .catch(error => {
+            console.error('Error updating person:', error)
+          })
+      }}
+
       return
     }
 
     const newPerson = { name: newName, number: newNumber }
+
     personService
       .create(newPerson)
       .then(response => {
-        console.log('data2:', response.data)
         setPersons(persons.concat(response.data))
         setNewName('')
         setNewNumber('')
       })
       .catch(error => {
-        console.error('error adding person:', error)
+        console.error('Error adding person:', error)
       })
   }
 
   const deletePerson = (id, name) => {
     if (window.confirm(`Delete ${name} ?`)) {
       personService
-      .deletePerson(id)
+        .deletePerson(id)
         .then(() => {
           setPersons(persons.filter(p => p.id !== id))
         })
         .catch(error => {
-          console.error('error deleting person:', error)
-          console.error('errorid  person:', id)
+          console.error('Error deleting person:', error)
         })
     }
   }
